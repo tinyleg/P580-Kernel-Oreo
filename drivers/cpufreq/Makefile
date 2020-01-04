@@ -14,6 +14,7 @@ obj-$(CONFIG_CPU_FREQ_GOV_CONSERVATIVE)	+= cpufreq_conservative.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVE)	+= cpufreq_interactive.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVES9)	+= cpufreq_interactiveS9.o
 obj-$(CONFIG_CPU_FREQ_GOV_THUNDERSTORM) 	+= cpufreq_thunderstorm.o
+obj-$(CONFIG_CPU_FREQ_GOV_THUNDERSTORM2) 	+= cpufreq_thunderstorm2.o
 obj-$(CONFIG_CPU_FREQ_GOV_COMMON)		+= cpufreq_governor.o
 
 obj-$(CONFIG_CPUFREQ_DT)		+= cpufreq-dt.o

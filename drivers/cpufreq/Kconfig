@@ -59,6 +59,7 @@ choice
 	  This option sets which CPUFreq governor shall be loaded at
 	  startup. If in doubt, select 'performance'.
 
+
 config CPU_FREQ_DEFAULT_GOV_PERFORMANCE
 	bool "performance"
 	select CPU_FREQ_GOV_PERFORMANCE
@@ -127,6 +128,25 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVES9
 	  loading your cpufreq low-level hardware driver, using the
 	  'interactiveS9' governor for latency-sensitive workloads.
 
+config CPU_FREQ_DEFAULT_GOV_THUNDERSTORM
+	bool "thunderstorm"
+	select CPU_FREQ_GOV_THUNDERSTORM
+	help
+	  Use the CPUFreq governor 'thunderstorm' as default. This allows
+	  you to get a full dynamic cpu frequency capable system by simply
+	  loading your cpufreq low-level hardware driver, using the
+	  'thunderstorm' governor for latency-sensitive workloads.
+
+config CPU_FREQ_DEFAULT_GOV_THUNDERSTORM2
+	bool "thunderstorm2"
+	select CPU_FREQ_GOV_THUNDERSTORM2
+	help
+	  Use the CPUFreq governor 'thunderstorm2' as default. This allows
+	  you to get a full dynamic cpu frequency capable system by simply
+	  loading your cpufreq low-level hardware driver, using the
+	  'thunderstorm2' governor for latency-sensitive workloads
+	  based on interactive from Samsung Galaxy S9.
+
 config CPU_FREQ_DEFAULT_GOV_SCHED
 	bool "sched"
 	select CPU_FREQ_GOV_INTERACTIVE
@@ -164,6 +184,13 @@ config CPU_FREQ_GOV_INTERACTIVES9
 
 	  If in doubt, say N.
 
+config CPU_FREQ_GOV_THUNDERSTORM
+	tristate "'thunderstorm' cpufreq policy governor"
+	depends on CPU_FREQ
+
+config CPU_FREQ_GOV_THUNDERSTORM2
+	tristate "'thunderstorm2' cpufreq policy governor"
+	depends on CPU_FREQ
 
 config CPU_FREQ_GOV_POWERSAVE
 	tristate "'powersave' governor"
@@ -249,6 +276,21 @@ config CPU_FREQ_GOV_CONSERVATIVE
 	  For details, take a look at linux/Documentation/cpu-freq.
 
 	  If in doubt, say N.
+
+config CPU_FREQ_GOV_SCHED
+	bool "'sched' cpufreq governor"
+	depends on CPU_FREQ
+	depends on SMP
+	select CPU_FREQ_GOV_COMMON
+	help
+	  'sched' - this governor scales cpu frequency from the
+	  scheduler as a function of cpu capacity utilization. It does
+	  not evaluate utilization on a periodic basis (as ondemand
+	  does) but instead is event-driven by the scheduler.
+
+	  If in doubt, say N.
+
+comment "CPU frequency scaling drivers"
 
 config CPUFREQ_DT
 	tristate "Generic DT based cpufreq driver"

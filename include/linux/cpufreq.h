@@ -500,6 +500,15 @@ extern struct cpufreq_governor cpufreq_gov_conservative;
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTERACTIVE)
 extern struct cpufreq_governor cpufreq_gov_interactive;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_interactive)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTERACTIVES9)
+extern struct cpufreq_governor cpufreq_gov_interactiveS9;
+#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_interactiveS9)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_THUNDERSTORM)
+extern struct cpufreq_governor cpufreq_gov_thunderstorm;
+#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_thunderstorm)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_THUNDERSTORM2)
+extern struct cpufreq_governor cpufreq_gov_thunderstorm2;
+#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_thunderstorm2)
 #endif
 
 /*********************************************************************

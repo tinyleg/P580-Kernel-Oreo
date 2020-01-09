@@ -549,17 +549,6 @@ static void cpufreq_thunderstorm_timer(unsigned long data)
 			new_freq = tunables->hispeed_freq;
 	}
 
-/*	if (screen_on
-		&& tunables->timer_rate != tunables->prev_timer_rate)
-		tunables->timer_rate = tunables->prev_timer_rate;
-	else if (!screen_on
-		&& tunables->timer_rate != SCREEN_OFF_TIMER_RATE) {
-		tunables->prev_timer_rate = tunables->timer_rate;
-		tunables->timer_rate
-			= max(tunables->timer_rate,
-				SCREEN_OFF_TIMER_RATE);
-	} */ /* disabled screen on */
-
 	if (cpufreq_frequency_table_target(pcpu->policy, pcpu->freq_table,
 					   new_freq, CPUFREQ_RELATION_L,
 					   &index)) {
@@ -821,7 +810,7 @@ static int cpufreq_thunderstorm_notifier(
 	int cpu;
 	unsigned long flags;
 
-	if (val == CPUFREQ_PRECHANGE) {
+	if (val == CPUFREQ_POSTCHANGE) {
 		pcpu = &per_cpu(cpuinfo, freq->cpu);
 		if (!down_read_trylock(&pcpu->enable_sem))
 			return 0;
@@ -1317,7 +1306,7 @@ static ssize_t store_mode(struct cpufreq_thunderstorm_tunables
 	int ret;
 	long unsigned int val;
 
-	ret = kstrtoul(buf, 0, &val);
+	ret = strict_strtoul(buf, 0, &val);
 	if (ret < 0)
 		return ret;
 
@@ -1341,7 +1330,7 @@ static ssize_t store_param_index(struct cpufreq_thunderstorm_tunables
 	long unsigned int val;
 	unsigned long flags;
 
-	ret = kstrtoul(buf, 0, &val);
+	ret = strict_strtoul(buf, 0, &val);
 	if (ret < 0)
 		return ret;
 
@@ -3249,7 +3238,6 @@ static int __init cpufreq_thunderstorm_init(void)
 {
 	unsigned int i;
 	struct cpufreq_thunderstorm_cpuinfo *pcpu;
-//	screen_on = true;
 
 	/* Initalize per-cpu timers */
 	for_each_possible_cpu(i) {

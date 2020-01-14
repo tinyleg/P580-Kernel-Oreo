@@ -92,6 +92,54 @@
 		#address-cells = <2>;
 		#size-cells = <0>;
 
+		auto_cpu_mapping {
+			enabled;
+		};
+
+		hmp {
+			up_threshold = <524>;
+			down_threshold = <214>;
+			semiboost_up_threshold = <254>;
+			semiboost_down_threshold = <163>;
+			bootboost-duration-us = <40000000>;
+			down_compensation_timeout = <30>;               /* ms */
+			down_compensation_high_freq = <1500000>;        /* min qos lock for little cpu */
+			down_compensation_mid_freq = <1000000>;          /* min qos lock for little cpu */
+			down_compensation_low_freq = <800000>;          /* min qos lock for little cpu */
+			little-id = <1>;
+		};
+
+		cpu-map {
+			cluster1 {
+				core0 {
+					cpu = <&cpu0>;
+				};
+				core1 {
+					cpu = <&cpu1>;
+				};
+				core2 {
+					cpu = <&cpu2>;
+				};
+				core3 {
+					cpu = <&cpu3>;
+				};
+			};
+			cluster0 {
+				core4 {
+					cpu = <&cpu4>;
+				};
+				core5 {
+					cpu = <&cpu5>;
+				};
+				core6 {
+					cpu = <&cpu6>;
+				};
+				core7 {
+					cpu = <&cpu7>;
+				};
+			};
+		};
+
 		cpu@0 {
 			device_type = "cpu";
 			compatible = "arm,cortex-a53", "arm,armv8";
@@ -421,24 +469,21 @@
 
 		/* For CPUFREQ table */
 		/* CL0 */
-		/* Booting value */
-		boot_info = <40 1690000>;
-		/* boot_qos_timeout, boot_freq */
-		cl0_idx_num = <18>;
+		cl0_idx_num = <17>;
 		cl0_max_support_idx = <3>;
-		cl0_min_support_idx = <17>;
-		cl0_boot_max_qos = <1690000>;
-		cl0_boot_min_qos = <1690000>;
+		cl0_min_support_idx = <16>;
+		cl0_boot_max_qos = <1482000>;
+		cl0_boot_min_qos = <1482000>;
 		cl0_boot_lock_time = <40000000>;
 		cl0_en_ema = <1>;
 		cl0_regulator = "BUCK1";
 
 		/* CL1 */
-		cl1_idx_num = <18>;
+		cl1_idx_num = <17>;
 		cl1_max_support_idx = <3>;
-		cl1_min_support_idx = <17>;
-		cl1_boot_max_qos = <1794000>;
-		cl1_boot_min_qos = <1794000>;
+		cl1_min_support_idx = <16>;
+		cl1_boot_max_qos = <1482000>;
+		cl1_boot_min_qos = <1482000>;
 		cl1_boot_lock_time = <40000000>;
 		cl1_en_ema = <1>;
 		cl1_regulator = "BUCK1";
@@ -462,8 +507,7 @@
 				  13   676000  800000	450000
 				  14   546000  800000	450000
 				  15   449000  800000	450000
-				  16   343000  800000	450000
-				  17   250000  750000	450000 >;
+				  16   343000  800000	450000 >;
 
 		/* CL1 table ->	 idx  freq    volt   bus_lock */
 		cl1_dvfs_domain_name = "dvfs_cpucl1";
@@ -483,8 +527,7 @@
 				  13   676000  800000	450000
 				  14   546000  800000	450000
 				  15   449000  800000	450000
-				  16   343000  800000	450000
-				  17   250000  700000	450000 >;	
+				  16   343000  800000	450000 >;
 	};
 
 	smc_info: mcinfo@10400000 {
@@ -1589,6 +1632,17 @@
 		smfc,int_qos_minlock = <400000>;
 	};
 
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <1>;
+		ranges;
+
+		fb_handover: bootloader_fb {
+			compatible = "exynos,fb_handover";
+			reg = <0x0 0x67000000 0xA00000>;
+		};
+	};
+
 	dsim_0: dsim@14800000 {
 		compatible = "samsung,exynos8-mipi-dsi";
 		reg = <0x0 0x14800000 0x100>;
@@ -1642,6 +1696,8 @@
 		pinctrl-names = "decon_te_on", "decon_te_off";
 		pinctrl-0 = <&decon_te_on>;
 		pinctrl-1 = <&decon_te_off>;
+
+		memory-region = <&fb_handover>;
 
 		cam-stat {
 			/* ISP_STATUS register */

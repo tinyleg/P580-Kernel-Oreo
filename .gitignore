@@ -536,5 +536,5 @@ fs/sdcardfs/o/sdcardfs.o
 fs/sdcardfs/o/super.o
 drivers/video/fbdev/exynos/decon_7870/decon_abd.o
 Siri/out
-
+boot.img-dtb
 >>>>>>> 46439acf5... GPU: Fix UC/UV

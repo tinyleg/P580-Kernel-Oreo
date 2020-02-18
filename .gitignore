@@ -7,6 +7,19 @@
 # Files for the ART/Dalvik VM
 *.dex
 
+# ori files
+include/linux/blkdev.h.orig
+include/linux/cpufreq.h.orig
+init/Kconfig.orig
+net/core/sock.c.orig
+arch/arm64/boot/dts/exynos7870-gtanotexl_common.dtsi.ori
+arch/arm64/configs/exynos7870-gtanotexlwifi_defconfig.ori
+drivers/cpufreq/Kconfig.orig
+drivers/cpufreq/Makefile.orig
+drivers/cpufreq/cpufreq_ondemand.c.orig
+drivers/cpufreq/exynos-mp-cpufreq.c.orig
+
+
 # Java class files
 *.class
 

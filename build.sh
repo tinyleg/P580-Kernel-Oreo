@@ -44,7 +44,7 @@ rm -rf $DTS/.*.tmp
 rm -rf $DTS/.*.cmd
 rm -rf $DTS/*.dtb
 
-sudo cp /home/darius/Android/kernel/SiriKernel/boot.img-dtb /home/darius/Android/kernel/SiriKernel/Siri/out/boot.img-dt
+sudo cp /home/darius/Android/kernel/SiriKernel/boot.img-dtb /home/darius/Android/kernel/SiriKernel/Siri/out/dtb
 
 
 #Make DT.img

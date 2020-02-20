@@ -1,0 +1,21 @@
+on init
+    mkdir /efs 0771 radio system
+    symlink /dev/block/platform/13540000.dwmmc0/by-name/RADIO /dev/mbin0
+    restorecon /dev/mbin0
+
+on fs
+    chown radio system /efs
+    chmod 0771 /efs
+    chown radio radio sys/devices/virtual/misc/multipdp/waketime
+    chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
+    chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
+
+service wifi-daemon /sbin/cbd -tmodap_ap -bm -mm -P platform/13540000.dwmmc0/by-name/RADIO
+    class main
+    user root
+    group radio cache inet misc audio sdcard_rw log sdcard_r shell
+    seclabel u:r:cbd:s0
+    oneshot
+
+on property:ro.multisim.simslotcount=*
+   write /sys/module/modem_ctrl_ss310ap/parameters/ds_detect ${ro.multisim.simslotcount}

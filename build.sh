@@ -17,7 +17,7 @@ make exynos7870-gtanotexlwifi_kor_open_00.dtb exynos7870-gtanotexlwifi_kor_open_
 # Make zImage
 make -j56
 
-#sudo cp /home/darius/Android/Kernel/Sirikernel/Siri/out/Image /home/darius/Android/kernel/SiriKernel/Siri/out/Image
+#sudo cp /home/darius/Android/Kernel/Sirikernel/arch/arm64/boot/Image /home/darius/Android/kernel/SiriKernel/Siri/out/Image
 
 # Make dtb.img
 DTS=arch/arm64/boot/dts

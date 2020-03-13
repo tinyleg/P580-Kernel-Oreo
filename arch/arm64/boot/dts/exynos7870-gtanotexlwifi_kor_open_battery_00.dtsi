@@ -103,7 +103,7 @@
 		battery,temp_table_data = <900 850 800 750 700 650 600 550 500 450 400 350 300 250 200
 								150 100 50 0 (-50) (-100) (-150) (-200)>;
 
-		battery,input_current_limit = <1650 460 460 1650 460 900 1000 460 1000 0 820 820 820 1450 1650 0 1650 400 700 1300 300 1000 1650 0 1450 1450 1000 1650 80 1650 1650 1400 1000 1000 820 820>;
+		battery,input_current_limit = <2000 460 460 2000 460 900 1000 460 1000 0 820 820 820 1450 2000 0 2000 400 700 1300 300 1000 2000 0 1450 1450 1000 2000 80 2000 2000 1400 1000 1000 820 820>;
 		battery,fast_charging_current = <2450 0 0 2450 460 1200 1000 460 1200 0 1200 1200 1200 1600 2450 0 2450 400 700 1300 300 1000 1900 0 2000 2000 1000 2450 80 1800 1000 1400 0 1000 1200 1200>;
 		battery,full_check_current_1st = <375 0 0 375 375 375 375 375 375 0 375 375 375 375 375 0 0 375 375 375 375 375 375 0 375 375 375 375 0 375 375 375 0 375 375 375>;
 		battery,full_check_current_2nd = <375 0 0 375 375 375 375 375 375 0 375 375 375 375 375 0 0 375 375 375 375 375 375 0 375 375 375 375 0 375 375 375 0 375 375 375>;
@@ -178,10 +178,10 @@
 		#io-channel-cells = <1>;
 		io-channel-ranges;
 
-		battery,chg_float_voltage = <4300>;
+		battery,chg_float_voltage = <4400>;
 
-		battery,siop_input_limit_current = <1200>;
-		battery,siop_charging_limit_current = <1000>;
+		battery,siop_input_limit_current = <2050>;
+		battery,siop_charging_limit_current = <2000>;
 
 		battery,swelling_high_temp_block = <410>;
 		battery,swelling_high_temp_recov = <390>;

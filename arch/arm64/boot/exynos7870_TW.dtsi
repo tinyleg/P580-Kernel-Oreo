@@ -76,15 +76,6 @@
 		tmuctrl0 = &tmuctrl_0;
 		tmuctrl1 = &tmuctrl_1;
 		tmuctrl2 = &tmuctrl_2;
-		ni2c0 = &i2c_0;
-		ni2c1 = &i2c_1;
-		ni2c2 = &i2c_2;
-		ni2c3 = &i2c_3;
-		ni2c4 = &i2c_4;
-		ni2c5 = &i2c_5;
-		ni2c6 = &i2c_6;
-		ni2c7 = &i2c_7;
-		ni2c8 = &i2c_8;
 	};
 
 	chipid@10100000 {
@@ -326,6 +317,22 @@
 		};
 	};
 
+  firmware {
+    android {
+      compatible = "android,firmware";
+      fstab {
+        compatible = "android,fstab";
+        system {
+          compatible = "android,system";
+          dev = "/dev/block/platform/13540000.dwmmc0/by-name/SYSTEM";
+          type = "ext4";
+          mnt_flags = "ro";
+          fsmgr_flags = "wait";
+        };
+      };
+    };
+  };
+
 	mailbox_cp: mcu_ipc@10500000 {
 		compatible = "samsung,exynos7580-mailbox";
 
@@ -542,10 +549,10 @@
 		devfreq_domain_name = "dvfs_int";
 		opp_list_length = <4>;
 		/* idx freq volt */
-		opp_list = <0 400000 900000
-			    1 334000 900000
-			    2 200000 900000
-			    3 134000 900000>;
+		opp_list = <0 400000 875000
+			    1 334000 875000
+			    2 200000 875000
+			    3 134000 875000>;
 
 		/* <initial_freq, default_qos, suspend_freq, cal_qos_max, min, max> */
 		freq_info = <400000 134000 134000 400000 134000 400000>;

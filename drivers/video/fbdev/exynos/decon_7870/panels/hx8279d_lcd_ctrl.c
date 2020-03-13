@@ -11,6 +11,7 @@
 */
 
 #include <linux/lcd.h>
+ #include <linux/display_state.h>
 #include <linux/backlight.h>
 #include <linux/gpio.h>
 #include <linux/of_gpio.h>
@@ -25,6 +26,12 @@
 #include "hx8279d_param.h"
 
 #include <linux/clk.h>
+
+bool display_on = true;
+bool is_display_on()
+{
+	return display_on;
+}
 
 #define POWER_IS_ON(pwr)			(pwr <= FB_BLANK_NORMAL)
 #define LEVEL_IS_HBM(brightness)		(brightness == EXTEND_BRIGHTNESS)
@@ -573,6 +580,8 @@ static int dsim_panel_displayon(struct dsim_device *dsim)
 
 	hx8279d_displayon(lcd);
 
+display_on = true;
+
 	mutex_lock(&lcd->lock);
 	lcd->state = PANEL_STATE_RESUMED;
 	mutex_unlock(&lcd->lock);
@@ -592,6 +601,8 @@ static int dsim_panel_suspend(struct dsim_device *dsim)
 		goto exit;
 
 	lcd->state = PANEL_STATE_SUSPENDING;
+
+display_on = false;
 
 	hx8279d_exit(lcd);
 

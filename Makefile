@@ -251,7 +251,7 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
 # Note: Some architectures assign CROSS_COMPILE in their arch/*/Makefile
 export KBUILD_BUILDHOST := $(SUBARCH)
 ARCH		?=arm64
-CROSS_COMPILE	?=/home/darius/Android/Kernel/toolchain/linaro/bin/aarch64-linux-gnu-
+CROSS_COMPILE	?=//home/darius/Android/Kernel/toolchain/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-gnu-7.5.0/bin/aarch64-linux-gnu-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)

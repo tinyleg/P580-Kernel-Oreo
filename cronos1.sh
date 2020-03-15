@@ -19,7 +19,7 @@
 # Main Dir
 CR_DIR=$(pwd)
 # Define toolchan path
-CR_TC=/home/darius/Android/Kernel/toolchain/linaro/bin/aarch64-linux-gnu-
+CR_TC=/home/darius/Android/Kernel/toolchain/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-gnu-7.5.0/bin/aarch64-linux-gnu-
 # Define proper arch and dir for dts files
 CR_DTS=arch/arm64/boot/dts
 CR_DTS_TW=arch/arm64/boot/exynos7870_TW.dtsi
